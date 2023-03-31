@@ -84,9 +84,13 @@ func PrintTable(t *TicTacToe) {
 
 func playerMove(t *TicTacToe, userMove int) {
 	userMove--
+
 	if t.table[userMove] != "*" {
 		fmt.Println("That cell is already taken. Please choose another cell.")
-		return
+		fmt.Print("Enter your move (1-9): ")
+		fmt.Scanln(&userMove)
+		userMove--
+		t.table[userMove] = t.player
 	}
 
 	t.table[userMove] = t.player
@@ -153,9 +157,8 @@ func CheckDraw(t *TicTacToe) bool {
 }
 
 func Reset(t *TicTacToe) {
-	for i := 0; i < 9; i++ {
-		t.table[i] = "*"
-	}
+	time.Sleep(3 * time.Second)
+	main()
 }
 
 func ClearConsole() {
